@@ -1,14 +1,15 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { ChatMessage, MessageSender, MarketNode } from '../types';
 
-if (!process.env.API_KEY) {
-  // This is a placeholder for environments where the API key is not set.
-  // In a real deployment, this would be handled securely.
-  // For this exercise, we'll proceed, but API calls will fail without a key.
-  console.warn("API_KEY environment variable not set. Gemini API calls will fail.");
+// Get API key from Vite environment variables
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY || import.meta.env.VITE_API_KEY;
+
+if (!API_KEY) {
+  console.error("API key not found. Please set VITE_GEMINI_API_KEY in your environment variables.");
+  throw new Error("API key not configured");
 }
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY! });
+const ai = new GoogleGenAI({ apiKey: API_KEY });
 
 export const getInitialAnalysis = async (idea: string): Promise<string> => {
   try {
