@@ -1,0 +1,5 @@
+{
+  "name": "Startup Idea Validator",
+  "description": "An AI-powered tool to help entrepreneurs validate their startup ideas or discover new ones. It guides users through a Socratic dialogue to refine their concepts, analyze market fit, and generate a validation document.",
+  "requestFramePermissions": []
+}
